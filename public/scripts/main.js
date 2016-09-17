@@ -6,6 +6,8 @@ var splashPage = document.getElementById('page-splash');
 var recentPostsSection = document.getElementById('recent-posts-list');
 var listeningFirebaseRefs = [];
 
+const MAX_POSTS_SHOWN = 10;
+
 function addPost(text, picture) {
     var postData = {
         message: text,
@@ -56,7 +58,7 @@ function startDatabaseQueries() {
         });
     };
 
-    var recentPostsRef = firebase.database().ref('posts').limitToLast(100);
+    var recentPostsRef = firebase.database().ref('posts').limitToLast(MAX_POSTS_SHOWN);
     fetchPosts(recentPostsRef, recentPostsSection);
     listeningFirebaseRefs.push(recentPostsRef);
 }
